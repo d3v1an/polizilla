@@ -16,6 +16,7 @@ $(function() {
 
 		$.loadBoardConfig(board_id);
 		$.loadBoardNotes(board_id);
+		$.loacTabsCounters(default_board);
 
 		e.preventDefault();
 	});
