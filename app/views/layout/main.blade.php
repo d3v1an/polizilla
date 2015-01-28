@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ URL::to('analytic/board/PEMEX') }}" class="btn-board" data-board="1"><!-- Buscar el de pemex -->
+                            <a href="{{ URL::to('analytic/board/PEMEX') }}" class="btn-board" data-board="51"><!-- Buscar el de pemex -->
                                 <span>PEMEX</span>
                             </a>
                         </li>
