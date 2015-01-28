@@ -3568,3 +3568,31 @@ fieldset[disabled] .btn-vk.active {
   font-weight: bold;
   color: #999999;
 }
+.time {
+  margin-top: -3px;
+  margin-right: 5px;
+}
+.board-list-text {
+  font-size: 15px;
+}
+.main-top-menu li > a {
+  color: #5D5D5D;
+}
+.main-top-menu li > a:hover {
+  text-decoration: underline;
+}
+mark {
+  background-color: #fff1a5;
+  color: #000000;
+}
+.tab-content,
+.box-body {
+  margin-left: 0px!important;
+  margin-right: 0px!important;
+  padding-left: 0pc!important;
+  padding-right: 0px!important;
+}
+.box-body {
+  border-left: none!important;
+  border-right: none!important;
+}

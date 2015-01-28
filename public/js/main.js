@@ -90,7 +90,8 @@ $(function() {
                                                 '<div class="panel panel-default">'+
                                                   '<div class="panel-heading clearfix">'+
                                                     '<div class="btn-group pull-right">'+
-                                                        (note.pdf.indexOf('.pdf')>=0 ? '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-object" data-url="'+base_path+note.pdf+'.jpg" data-type="image" data-doc-img-id="'+note.idEditorial+'"><i class="fa fa-file-image-o" ></i> Imagen</button>' + '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-object" data-url="'+base_path+note.pdf+'" data-type="pdf" data-doc-pdf-id="'+note.idEditorial+'"><i class="fa fa-file-pdf-o"></i> PDF</button>' : '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-link-ext" data-url="'+note.Encabezado+'" data-type="elink"><i class="fa fa-file-pdf-o"></i> Link de nota</button>') +
+                                                    	'<a href="'+base_path+note.pdf+'.jpg" target="_blank" class="btn btn-default btn-sm board-deploy-object">Imagen</a>' +
+														'<a href="'+base_path+note.pdf+'.jpg" target="_blank" class="btn btn-default btn-sm board-deploy-object">PDF</a>' +
                                                     '</div>'+
                                                   '</div>'+
                                                   '<div class="panel-body">'+
@@ -105,6 +106,7 @@ $(function() {
                         $('.accordion-result').append(_note);
 
 					});
+
 				}
 
 			} else {

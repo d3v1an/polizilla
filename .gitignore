@@ -2,6 +2,7 @@
 /bootstrap/compiled.php
 /vendor
 /public/img/portadas
+/public/Periodicos
 composer.phar
 composer.lock
 .env.*.php
