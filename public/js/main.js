@@ -9,7 +9,8 @@ $(function() {
 
 		default_board = board_id;
 
-		$.loadBoardConfig(board_id);	
+		$.loadBoardConfig(board_id);
+		$.loadBoardNotes(board_id);
 
 		e.preventDefault();
 	});
