@@ -30,10 +30,10 @@
                             <!-- Custom Tabs -->
                             <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#tab_df" id="tab_df" data-toggle="tab">D.F.</a></li>
-                                    <li><a href="#tab_estados" id="tab_estados" data-toggle="tab">Estados</a></li>
-                                    <li><a href="#tab_revistas" id="tab_revistas" data-toggle="tab">Revistas</a></li>
-                                    <li><a href="#tab_portales" id="tab_portales" data-toggle="tab">Portales</a></li>
+                                    <li class="active"><a href="#periodicos" id="tab_df" data-toggle="tab">D.F.</a></li>
+                                    <li><a href="#estados" id="tab_estados" data-toggle="tab">Estados</a></li>
+                                    <li><a href="#revistas" id="tab_revistas" data-toggle="tab">Revistas</a></li>
+                                    <li><a href="#web" id="tab_portales" data-toggle="tab">Portales</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     

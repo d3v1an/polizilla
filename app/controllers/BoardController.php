@@ -90,4 +90,56 @@ class BoardController extends \BaseController {
 
 	}
 
+	public function countBoardNotes()
+	{
+		try {
+			
+			if(Input::get('type')=='board')
+			{
+				$board = Board::find(Input::get('id'));
+
+				if(!$board) return Response::json(array('status'=>false,'message'=>'No pudo ser localizado el tablero'),200);
+
+				// Obtenemos el tipo de query a ejecutar
+			    $main_query 	= $board->queries->query;
+			    $estados_query 	= $board->queries->query_estados;
+			    $revistas_query = $board->queries->query_revistas;
+			    $web_query 		= $board->queries->query_web;
+
+			} else {
+
+				$board = MenuItem::find(Input::get('id'));
+
+				if(!$board) return Response::json(array('status'=>false,'message'=>'No pudo ser localizado el tablero'),200);
+
+				// Obtenemos el tipo de query a ejecutar
+			    $main_query 	= $board->query;
+			    $estados_query 	= $board->query_estados;
+			    $revistas_query = $board->query_revistas;
+			    $web_query 		= $board->query_web;
+			}
+
+			// Si el query esta limpio no mandamos mensaje de no disponivilidad
+		    if(
+		    	(empty($main_query) || $main_query=='') ||
+		    	(empty($estados_query) || $estados_query=='') ||
+		    	(empty($revistas_query) || $revistas_query=='') ||
+		    	(empty($web_query) || $web_query=='')
+		    	) {
+		    	return Response::json(array('status'=>false,'message'=>'No hay datos disponibles para estas consultas'),200);
+		    }
+
+		    // Main counter
+		    $main_cq 		= DB::select( DB::raw( $main_query ) );
+		    $estados_cq 	= DB::select( DB::raw( $estados_query ) );
+		    $revistas_cq 	= DB::select( DB::raw( $revistas_query ) );
+		    $web_cq 		= DB::select( DB::raw( $web_query ) );
+
+		    return Response::json(array('status'=>true,'message'=>'Contadores de tableros','main'=>count($main_cq),'estados'=>count($estados_cq),'revistas'=>count($revistas_cq),'web'=>count($web_cq)),200);
+
+		} catch (Exception $e) {
+			return Response::json(array('status'=>false,'message'=>'Ocurrio un erro al obtener la informacion de los contadores','exception'=>$e->getMessage()),200);
+		}
+	}
+
 }

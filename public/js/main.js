@@ -1,9 +1,13 @@
 $(function() {
 
+	var currentTab = "#periodicos";
+
 	// Boton para cargar la informacion del tablero seleccionado
 	$(".btn-board").click(function(e){
 
 		var board_id = $(this).data('board');
+
+		default_board = board_id;
 
 		$.loadBoardConfig(board_id);	
 
@@ -16,7 +20,6 @@ $(function() {
 		$('.menu-items').html('').addClass('text-center').html('<i class="fa fa-spinner fa-spin"></i> Cargando personajes...');
 
 		$.d3POST(base_path+'/analytic/loadboardconfig',{id:board_id},function(data){
-			console.log(data);
 
 			if(data.status==true) {
 
@@ -55,7 +58,6 @@ $(function() {
 		$('.accordion-result').html('').addClass('text-center').html('<i class="fa fa-spinner fa-spin"></i> Cargando notas...');
 		
 		$.d3POST(base_path+'/analytic/loadboardnotes',{id:board_id,query:tab},function(data){
-			console.log(data);
 
 			if(data.status==true) {
 				
@@ -110,11 +112,29 @@ $(function() {
 				}
 
 			} else {
-				alert(data.message);
+				$('.accordion-result').html('').addClass('text-center').html(data.message);
 				return false;
 			}
 
 		});
+
+	};
+
+	// Funcion para cargar los contadores de los tableros
+	$.loacTabsCounters = function(object_id,type) {
+
+		var args = type!=undefined ? {id:object_id,type:type} : {id:object_id,type:'board'};
+
+		$.d3POST(base_path+'/analytic/countnotes',args,function(data) {
+
+            if(data.status==true) {
+                $('#tab_df').html(' D.F. ('+data.main+')');
+                $('#tab_estados').html('Estados ('+data.estados+')');
+                $('#tab_revistas').html('Revistas ('+data.revistas+')');
+                $('#tab_portales').html('Portales ('+data.web+')');
+            }
+
+        });
 
 	};
 
@@ -123,5 +143,24 @@ $(function() {
 
 	// Carga por defecto de notas existentes
 	$.loadBoardNotes(default_board,current_tab);
+
+	// Contadores de tabs
+	$.loacTabsCounters(default_board);
+
+	// Pestañas adicionales
+    $(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+
+        currentTab  = $(e.target).attr('href');
+
+        useQuery    = 'query';
+
+        if(currentTab=='#periodicos') useQuery = 'query';
+        else if(currentTab=='#estados') useQuery = 'query_estados';
+        else if(currentTab=='#revistas') useQuery = 'query_revistas';
+        else if(currentTab=='#web') useQuery = 'query_web';
+
+        $.loadBoardNotes(default_board,useQuery);
+
+    });
 
 });
