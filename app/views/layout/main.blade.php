@@ -135,7 +135,6 @@
         {{ HTML::script('js/plugins/iCheck/icheck.min.js') }}
 
         <!-- AdminLTE App -->
-        <script src="js/" type="text/javascript"></script>
         {{ HTML::script('js/AdminLTE/app.js') }}
         <!-- AdminLTE for demo purposes -->
         {{ HTML::script('js/common.js') }}
