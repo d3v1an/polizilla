@@ -90,13 +90,7 @@ $(function() {
                                                 '<div class="panel panel-default">'+
                                                   '<div class="panel-heading clearfix">'+
                                                     '<div class="btn-group pull-right">'+
-
-                                                        (note.cutted==1 ? '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-cut" data-id="'+note.idEditorial+'" data-type="cut"><i class="fa fa-scissors"></i> <i class="fa fa-file-pdf-o"></i> Recorte</button>' : '') +
-
-                                                        (note.pdf.indexOf('.pdf')>=0 ? '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-object" data-url="'+base_path+note.pdf+'.jpg" data-type="image" data-doc-img-id="'+note.idEditorial+'"><i class="fa fa-file-image-o" ></i> Imagen</button>' + '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-object" data-url="'+base_path+note.pdf+'" data-type="pdf" data-doc-pdf-id="'+note.idEditorial+'"><i class="fa fa-file-pdf-o"></i> PDF</button>' + '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-link-pdf" data-url="'+base_path+note.pdf+'" data-type="image"><i class="fa fa-file-pdf-o"></i> Link de PDF</button>' : '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-link-ext" data-url="'+note.Encabezado+'" data-type="elink"><i class="fa fa-file-pdf-o"></i> Link de nota</button>') +
-
-                                                        '<button class="btn btn-default btn-sm board-deploy-email" data-id="'+note.idEditorial+'" data-type="email"><i class="fa fa-envelope-o"></i> Email</button>' +
-
+                                                        (note.pdf.indexOf('.pdf')>=0 ? '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-object" data-url="'+base_path+note.pdf+'.jpg" data-type="image" data-doc-img-id="'+note.idEditorial+'"><i class="fa fa-file-image-o" ></i> Imagen</button>' + '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-object" data-url="'+base_path+note.pdf+'" data-type="pdf" data-doc-pdf-id="'+note.idEditorial+'"><i class="fa fa-file-pdf-o"></i> PDF</button>' : '<button data-return="#return_'+note.idEditorial+'" class="btn btn-default btn-sm board-deploy-link-ext" data-url="'+note.Encabezado+'" data-type="elink"><i class="fa fa-file-pdf-o"></i> Link de nota</button>') +
                                                     '</div>'+
                                                   '</div>'+
                                                   '<div class="panel-body">'+
