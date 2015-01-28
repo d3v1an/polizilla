@@ -91,7 +91,7 @@ $(function() {
                                                   '<div class="panel-heading clearfix">'+
                                                     '<div class="btn-group pull-right">'+
                                                     	'<a href="'+base_path+note.pdf+'.jpg" target="_blank" class="btn btn-default btn-sm board-deploy-object">Imagen</a>' +
-														'<a href="'+base_path+note.pdf+'.jpg" target="_blank" class="btn btn-default btn-sm board-deploy-object">PDF</a>' +
+														'<a href="'+base_path+note.pdf+'" target="_blank" class="btn btn-default btn-sm board-deploy-object">PDF</a>' +
                                                     '</div>'+
                                                   '</div>'+
                                                   '<div class="panel-body">'+
