@@ -9,6 +9,11 @@ $(function() {
 
 		default_board = board_id;
 
+		$('#tab_df').html('D.F.');
+        $('#tab_estados').html('Estados');
+        $('#tab_revistas').html('Revistas');
+        $('#tab_portales').html('Portales');
+
 		$.loadBoardConfig(board_id);
 		$.loadBoardNotes(board_id);
 
@@ -129,7 +134,7 @@ $(function() {
 		$.d3POST(base_path+'/analytic/countnotes',args,function(data) {
 
             if(data.status==true) {
-                $('#tab_df').html(' D.F. ('+data.main+')');
+                $('#tab_df').html('D.F. ('+data.main+')');
                 $('#tab_estados').html('Estados ('+data.estados+')');
                 $('#tab_revistas').html('Revistas ('+data.revistas+')');
                 $('#tab_portales').html('Portales ('+data.web+')');
