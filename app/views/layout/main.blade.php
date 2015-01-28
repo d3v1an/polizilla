@@ -107,6 +107,7 @@
         <script type="text/javascript">
             var base_path       = '{{ URL::to("/") }}';
             var default_board   = 3;
+            var current_tab     = 'query';
         </script>
 
         <!-- jQuery 2.0.2 -->

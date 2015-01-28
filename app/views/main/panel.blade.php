@@ -37,6 +37,8 @@
                                 </ul>
                                 <div class="tab-content">
                                     
+                                    <div class="accordion-result"></div>
+                                    <!--
                                     <div class="tab-pane active" id="tab_df">
                                         <b>How to use:</b>
                                         <p>Exactly like the original bootstrap tabs except you should use
@@ -48,7 +50,7 @@
                                         my dear friend, so absorbed in the exquisite sense of mere tranquil existence,
                                         that I neglect my talents. I should be incapable of drawing a single stroke
                                         at the present moment; and yet I feel that I never was a greater artist than now.
-                                    </div><!-- /.tab-pane -->
+                                    </div>
 
                                     <div class="tab-pane" id="tab_estados">
                                         The European languages are members of the same family. Their separate existence is a myth.
@@ -58,7 +60,7 @@
                                         achieve this, it would be necessary to have uniform grammar, pronunciation and more common
                                         words. If several languages coalesce, the grammar of the resulting language is more simple
                                         and regular than that of the individual languages.
-                                    </div><!-- /.tab-pane -->
+                                    </div>
 
                                     <div class="tab-pane active" id="tab_revistas">
                                         <b>How to use:</b>
@@ -71,7 +73,7 @@
                                         my dear friend, so absorbed in the exquisite sense of mere tranquil existence,
                                         that I neglect my talents. I should be incapable of drawing a single stroke
                                         at the present moment; and yet I feel that I never was a greater artist than now.
-                                    </div><!-- /.tab-pane -->
+                                    </div>
 
                                     <div class="tab-pane" id="tab_portales">
                                         The European languages are members of the same family. Their separate existence is a myth.
@@ -81,7 +83,8 @@
                                         achieve this, it would be necessary to have uniform grammar, pronunciation and more common
                                         words. If several languages coalesce, the grammar of the resulting language is more simple
                                         and regular than that of the individual languages.
-                                    </div><!-- /.tab-pane -->
+                                    </div>
+                                    -->
 
                                 </div><!-- /.tab-content -->
                             </div><!-- nav-tabs-custom -->

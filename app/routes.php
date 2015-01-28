@@ -47,6 +47,9 @@ Route::group(['prefix' => 'analytic','before' => 'auth'], function ()
 	// Pagina principal del panel de administracion
     Route::get('/', 'HomeController@index');
 
-    // Carga de informacion de tablero seleccionado
+    // Carga de configuracion de tablero seleccionado
     Route::post('/loadboardconfig', 'BoardController@loadBoardConfig');
+
+    // Carga de notas del tablero seleccionado
+    Route::post('/loadboardnotes', 'BoardController@loadBoardNotes');
 });
