@@ -85,6 +85,8 @@ $(function() {
                                                     '<p><span data-news-id="'+note.idEditorial+'">'+note.Periodico+'</span> | <span data-state-id="'+note.idEditorial+'">'+note.estado+'</span> <span class="time"><i class="fa fa-clock-o"></i> <span data-date-id="'+note.idEditorial+'">'+note.Fecha+' ' +note.Hora+ '</span></span></p>'+
                                                     '<h3 class="panel-title pull-left">'+
                                                         '<ul class="list-inline board-list-text">'+
+                                                        	'<li><span class="label label-success"># '+(index+1)+'</span></li>' +
+                                                            '<li><span class="label label-primary">ID : '+note.idEditorial+'</span></li>' +
                                                             '<li><span class="label label-danger" data-page-id="'+note.idEditorial+'">Pagina : '+note.PaginaPeriodico+'</span></li>'+
                                                             '<li><span class="label label-danger" data-section-id="'+note.idEditorial+'">Seccion : '+note.seccion+'</span></li>'+
                                                             '<li><span class="label label-danger" data-category-id="'+note.idEditorial+'">Categoria : '+note.Categoria+'</span></li>'+
@@ -124,7 +126,6 @@ $(function() {
 			}
 
 		});
-
 	};
 
 	// Funcion para cargar los contadores de los tableros
@@ -142,7 +143,6 @@ $(function() {
             }
 
         });
-
 	};
 
 	// Carga por defecto de informacion de tablero
