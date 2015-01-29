@@ -15,6 +15,8 @@ $(function() {
         $('#tab_revistas').html('Revistas');
         $('#tab_portales').html('Portales');
 
+        by_board = true;
+
 		$.loadBoardConfig(board_id);
 		$.loadBoardNotes(board_id);
 		$.loadTabsCounters(default_board);
@@ -49,6 +51,9 @@ $(function() {
 						$(this).addClass('btn-danger');
 
 						var item_id = $(this).data('id');
+						
+						tab_id 		= item_id;
+						by_board 	= false;
 
 						$('#tab_df').html('D.F.');
 			            $('#tab_estados').html('Estados');
@@ -58,7 +63,7 @@ $(function() {
 			            $('#box-boards a[href="#periodicos"]').tab('show');
 						
 						$.loadTabsCounters(item_id,'menu_item');
-						$.loadMenuNotes(item_id);
+						$.loadMenuNotes(tab_id);
 
 					});
 				} else {
@@ -205,7 +210,10 @@ $(function() {
         else if(currentTab=='#revistas') useQuery = 'query_revistas';
         else if(currentTab=='#web') useQuery = 'query_web';
 
-        $.loadBoardNotes(default_board,useQuery);
+        console.log(default_board+'/'+useQuery);
+
+        if(by_board) $.loadBoardNotes(default_board,useQuery);
+        else $.loadMenuNotes(tab_id,useQuery);
 
     });
 
