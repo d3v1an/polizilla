@@ -14,7 +14,7 @@ class BoardController extends \BaseController {
 			if(!$board) return Response::json(array('status'=>false,'message'=>'El tablero no existe'),200);
 
 			// Menu items
-			$menu_items 		= $board->menus()->with(array('items'=>function($query){ $query->where('type','sql')->where('query','!=','N/A'); }))->where('position','=','left')->first();
+			$menu_items 		= $board->menus()->with(array('items'=>function($query){ $query->where('type','sql')->where('query','!=','N/A')->where('query','!=',''); }))->where('position','=','left')->first();
 
 			foreach ($menu_items->items as $item) {
 				if(!empty($item->query_count) && $item->query_count!='') {
