@@ -164,6 +164,8 @@ class BoardController extends \BaseController {
 		    elseif ($user_query=='query_revistas') $_query = $menuItem->query_revistas;
 		    elseif ($user_query=='query_web') $_query = $menuItem->query_web;
 
+		    if($_query=='') return Response::json(array('status'=>false,'message'=>"No hay consulta disponible para esta opcion"),200);
+
 	   		$notes = DB::select( DB::raw( $_query) );
 
 	    	if(count($notes)<1) return Response::json(array('status'=>false,'message'=>"No hay datos disponibles para esta consulta"),200);
