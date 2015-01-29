@@ -19,7 +19,7 @@ class BoardController extends \BaseController {
 			foreach ($menu_items->items as $item) {
 				if(!empty($item->query_count) && $item->query_count!='') {
 	        		$_count_notes = DB::select( DB::raw( $item->query_count ) );
-		        	$item->count_notes = isset($_count_notes[0]->Total) ? $_count_notes[0]->Total : 666;
+		        	$item->count_notes = $_count_notes[0]->Total;
 		        } else  $item->count_notes = 0;
 			}
 
@@ -90,6 +90,7 @@ class BoardController extends \BaseController {
 
 	}
 
+	// Cuenta las notas de las pestañas
 	public function countBoardNotes()
 	{
 		try {
@@ -140,6 +141,68 @@ class BoardController extends \BaseController {
 		} catch (Exception $e) {
 			return Response::json(array('status'=>false,'message'=>'Ocurrio un erro al obtener la informacion de los contadores','exception'=>$e->getMessage()),200);
 		}
+	}
+
+	// Obtenemos los tableros iniciales
+	public function loadBoardsByMenuItem()
+	{
+
+		try {
+
+			$id 			= Input::get('id');
+			$user_query 	= Input::has('query') ? Input::get('query') : 'query';
+			$menuItem 		= MenuItem::find($id);
+
+			if(!$menuItem) return Response::json(array('status'=>false,'message'=>"No se pudo localizar el item de menu seleccionado"),200);
+
+			// Checksum del query
+		    $_query 		= $menuItem->query;
+
+		    // Obtenemos el tipo de query a ejecutar
+		    if($user_query=='query') $_query = $menuItem->query;
+		    elseif ($user_query=='query_estados') $_query = $menuItem->query_estados;
+		    elseif ($user_query=='query_revistas') $_query = $menuItem->query_revistas;
+		    elseif ($user_query=='query_web') $_query = $menuItem->query_web;
+
+	   		$notes = DB::select( DB::raw( $_query) );
+
+	    	if(count($notes)<1) return Response::json(array('status'=>false,'message'=>"No hay datos disponibles para esta consulta"),200);
+
+	    	// Obtenemos los id's de los tags
+	    	$tags 			= array();
+
+	    	// Creterio para remplaso
+			$original 		= array();
+			$idTags 		= array();
+
+			if($menuItem->tags()->count()>0) {
+				
+				foreach ($menuItem->tags()->get() as $tag) {
+					array_push($original, $tag->tag);
+					array_push($idTags,$tag->id);
+				}
+
+				$tags = $idTags;
+
+			}
+
+			foreach ($notes as $note) {
+
+				if(count($original)>0) {
+					foreach ($original as $t) {
+						if(trim($t)!='') $note->Texto = preg_replace("/".$t."/i", "<mark>".$t."</mark>", $note->Texto);
+					}
+				}
+
+				$note->Fecha = esDateTime(strtotime($note->Fecha));
+			}
+
+			return Response::json(array('status'=>true,'message'=>'El tablero si contiene notas para mostrar','notes'=>$notes,'tags'=>$tags),200);
+
+		} catch (Exception $e) {
+			return Response::json(array('status'=>false,'message'=>"Ocurrio un erro al intentar obtener la informacion del menu",'exception'=>$e->getMessage()),200);
+		}
+
 	}
 
 }

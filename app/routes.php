@@ -55,4 +55,7 @@ Route::group(['prefix' => 'analytic','before' => 'auth'], function ()
 
     // Obtenemos el contador de las notas del tablero seleccionado
     Route::post('/countnotes', 'BoardController@countBoardNotes');
+
+    // Carga de notas del tablero seleccionado
+    Route::post('/loadmenuitemdnotes', 'BoardController@loadBoardsByMenuItem');
 });
