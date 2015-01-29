@@ -27,6 +27,20 @@
 
                     <div class="row">
                         <div class="col-md-12">
+                            <!-- Various colors -->
+                            <div class="box">
+                                <div class="box-body box-body_margin menu-option">
+                                    <a class="btn btn-default" id="check_all" data-status="unchecked">
+                                        <i class="fa fa-check"></i>
+                                        Seleccionar todos
+                                    </a>
+                                </div>
+                            </div><!-- /.box -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
                             <!-- Custom Tabs -->
                             <div class="nav-tabs-custom" id="box-boards">
                                 <ul class="nav nav-tabs">

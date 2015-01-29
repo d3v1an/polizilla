@@ -17,6 +17,8 @@ $(function() {
 
         by_board = true;
 
+        $("#check_all").data('status','unchecked');
+
 		$.loadBoardConfig(board_id);
 		$.loadBoardNotes(board_id);
 		$.loadTabsCounters(default_board);
@@ -49,9 +51,10 @@ $(function() {
 
 						$(".btn-char-item").removeClass('btn-danger');
 						$(this).addClass('btn-danger');
+						$("#check_all").data('status','unchecked');
 
 						var item_id = $(this).data('id');
-						
+
 						tab_id 		= item_id;
 						by_board 	= false;
 
@@ -210,11 +213,31 @@ $(function() {
         else if(currentTab=='#revistas') useQuery = 'query_revistas';
         else if(currentTab=='#web') useQuery = 'query_web';
 
-        console.log(default_board+'/'+useQuery);
+        $("#check_all").data('status','unchecked');
 
         if(by_board) $.loadBoardNotes(default_board,useQuery);
         else $.loadMenuNotes(tab_id,useQuery);
 
+    });
+
+    $("#check_all").click(function(e){
+
+    	var status 			= $(this).data('status');
+    	var check_exists 	= ($('input[type="checkbox"]','.accordion-result').length>0);
+
+    	if(status=='unchecked') {
+    		if(check_exists) {
+    			$('input[type="checkbox"]','.accordion-result').prop('checked',true);
+    			$(this).data('status','checked');
+    		}
+    	} else {
+    		if(check_exists) {
+    			$('input[type="checkbox"]','.accordion-result').prop('checked',false);
+    			$(this).data('status','unchecked');
+    		}
+    	}
+
+    	e.preventDefault();
     });
 
 });

@@ -3596,3 +3596,8 @@ mark {
   border-left: none!important;
   border-right: none!important;
 }
+
+.box-body_margin {
+  margin-left: 5px!important;
+  margin-right: 5px!important;
+}
