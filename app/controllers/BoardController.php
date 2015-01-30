@@ -207,4 +207,43 @@ class BoardController extends \BaseController {
 
 	}
 
+	// Funcion para lectura de segmentos
+	public function loadSegments()
+	{
+		try {
+			
+			$segments = SummarySegment::where('board_id',Input::get('id'))->get();
+
+			if(!$segments) return Response::json(array('status'=>false,'message'=>'No hay segmentos disponibles para este tablero'),200);
+
+			return Response::json(array('status'=>true,'message'=>'Segmentos localizados','segments'=>$segments),200);
+
+		} catch (Exception $e) {
+			return Response::json(array('status'=>false,'message'=>'Ocurrio un problema con la lectutra de segmentos','exception'=>$e->getMessage()),200);
+		}
+	}
+
+	// Funcion para guardar un resumen
+	public function saveSummary()
+	{
+		try {
+			
+			$summary = new Summary();
+
+			$summary->title 				= Input::get('title');
+			$summary->summary 				= Input::get('summary');
+			$summary->sources 				= Input::get('source');
+			$summary->summary_segment_id	= Input::get('segment');
+
+			if(!$summary->save()) return Response::json(array('status'=>false,'message'=>'No pude ser guardado el resumen'),200);
+
+			$summary->notes()->attach(explode(',', Input::get('ids')));
+
+			return Response::json(array('status'=>true,'message'=>'Resumen guadado.'),200);
+
+		} catch (Exception $e) {
+			return Response::json(array('status'=>false,'message'=>'No pude ser guardado el resumen','exception'=>$e->getMessage()),200);			
+		}
+	}
+
 }

@@ -22,6 +22,7 @@ $(function() {
 		$.loadBoardConfig(board_id);
 		$.loadBoardNotes(board_id);
 		$.loadTabsCounters(default_board);
+		$.segmentLoad(default_board);
 
 		e.preventDefault();
 	});
@@ -129,7 +130,7 @@ $(function() {
 					var _note = '<div class="panel box box-default" id="return_'+note.idEditorial+'">'+
                                     '<div class="box-header">'+
                                         '<div class="board-box">'+
-                                            '<div class="board-check pull-left"><input type="checkbox" class="minimal" name="board_note[]" data-id="'+note.idEditorial+'"></div>'+
+                                            '<div class="board-check pull-left"><input type="checkbox" class="minimal" name="board_note[]" data-id="'+note.idEditorial+'" data-source="'+note.Periodico+'"></div>'+
                                             '<a data-toggle="collapse" data-parent="#accordion_periodicos" href="#collapse_item_'+note.idEditorial+'">'+
                                                 /*'<span class="label label-default pull-right">Neutral</span>'+*/
                                                 '<div class="board-image pull-left"><img src="'+base_path+'/img/portadas/thumbs/thumb-'+note.idPeriodico+'.jpg" alt="" class="img-thumbnail" width="100px" height="100px" data-thumb-id="'+note.idEditorial+'"></div>'+
@@ -153,6 +154,7 @@ $(function() {
                                             '<div class="panel panel-default">'+
                                               '<div class="panel-heading clearfix">'+
                                                 '<div class="btn-group pull-right">'+
+                                                	//'<a class="btn btn-default btn-sm board-deploy-resumen" data-id="'+note.idEditorial+'">Resumen</a>' +
                                                 	'<a href="'+base_path+note.pdf+'.jpg" target="_blank" class="btn btn-default btn-sm board-deploy-object">Imagen</a>' +
 													'<a href="'+base_path+note.pdf+'" target="_blank" class="btn btn-default btn-sm board-deploy-object">PDF</a>' +
                                                 '</div>'+
@@ -192,6 +194,31 @@ $(function() {
 
 	};
 
+	// Load segments
+	$.segmentLoad = function(board_id) {
+
+		$.d3POST(base_path+'/analytic/loadsegments',{id:board_id},function(data){
+
+			if(data.status==true) {
+
+				var _selects = '';
+
+				$("select#note-segment").html('');
+
+				if(data.segments.length>0) {
+					$.each(data.segments,function(i, item){
+						_selects += '<option value="'+item.id+'">'+item.name+'</option>';
+					});
+					$("select#note-segment").append(_selects);
+				} else {
+					$("select#note-segment").append('<option value="0">General</option>');
+				}
+
+			}
+			//
+		})
+	}
+
 	// Carga por defecto de informacion de tablero
 	$.loadBoardConfig(default_board);
 
@@ -200,6 +227,9 @@ $(function() {
 
 	// Contadores de tabs
 	$.loadTabsCounters(default_board);
+
+	// Carga de segmentos
+	$.segmentLoad(default_board);
 
 	// Pestañas adicionales
     $(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
@@ -240,4 +270,60 @@ $(function() {
     	e.preventDefault();
     });
 
+    $("#btn-resumen").click(function(){
+
+		var _ids 		= [];
+		var _sources 	= [];
+		var _sm_note 	= '';
+
+		$("#form-resumens").trigger('reset');
+
+		$('.accordion-result input:checked').each(function() {
+			
+			var note_id 	= $(this).data('id');
+			var note_source = $(this).data('source');
+
+			_sm_note += '<small class="label label-danger">'+note_id+'</small> ';
+            _ids.push(note_id);
+            
+            if($.inArray(note_source,_sources) == -1) {
+            	console.log(note_source+' Agregado');
+            	_sources.push(note_source);
+            }
+
+        });
+
+        $("#note-ids","#form-resumens").val(_ids.join());
+        $("#note-source","#form-resumens").val(_sources.join(', '));
+
+        $(".dialog-notes").html('').append(_sm_note);
+
+		$("#dialog-resument").modal('show');
+	});
+
+	$("#btn-resumen-save").click(function(e){
+
+		var _ids 		= $("#note-ids","#form-resumens").val();
+		var _title 		= $("#note-title","#form-resumens").val();
+		var _resume 	= $("#note-resume","#form-resumens").val();
+		var _source 	= $("#note-source","#form-resumens").val();
+		var _segment	= $( "select option:selected","#form-resumens" ).val();
+
+		if(_title=='' || _resume=='' || _source=='') {
+			alert('Todos los campos son requeridos');
+			return false;
+		}
+
+		$.d3POST(base_path+'/analytic/savesummary',{ids:_ids,title:_title,summary:_resume,source:_source,segment:_segment},function(data){
+
+			if(data.status==true) {
+				alert(data.message);
+				$("#dialog-resument").modal('hide');
+			} else {
+				alert(data.message);
+			}
+		})
+
+		e.preventDefault();
+	});
 });

@@ -11,6 +11,23 @@
 |
 */
 
+Route::get('/addsummary', function()
+{
+    //$note = Note::find(4933088);
+    
+    /*
+    $ss = new Summary();
+
+    $ss->title = 'Cartones';
+    $ss->summary = 'A no mames este es el cuerpo del resumen';
+    $ss->sources = 'Periodico el indagador';
+    $ss->save();
+    $ss->notes()->attach(array(4933088));
+    */
+    
+    //return Summary::with('notes')->find(1);
+});
+
 Route::get('/', function()
 {
 	if (Auth::check())
@@ -58,4 +75,10 @@ Route::group(['prefix' => 'analytic','before' => 'auth'], function ()
 
     // Carga de notas del tablero seleccionado
     Route::post('/loadmenuitemdnotes', 'BoardController@loadBoardsByMenuItem');
+
+    // Carga de segmentos
+    Route::post('/loadsegments', 'BoardController@loadSegments');
+
+    // Se guarda el resumen
+    Route::post('/savesummary', 'BoardController@saveSummary');
 });
