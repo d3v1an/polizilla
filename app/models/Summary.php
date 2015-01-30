@@ -8,4 +8,9 @@ class Summary extends \Eloquent {
     {
         return $this->belongsToMany('Note');
     }
+
+    public function segment()
+    {
+    	return $this->belongsTo('Segment','id');
+    }
 }

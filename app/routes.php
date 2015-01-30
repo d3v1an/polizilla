@@ -11,8 +11,14 @@
 |
 */
 
-Route::get('/addsummary', function()
+Route::get('/test', function()
 {
+    return Summary::whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') = '".date("Y-m-d")."'")->with('segment')->get();
+    $ok = Summary::with('segment')->get();
+    pre($ok);
+    $queries = DB::getQueryLog();
+    return end($queries);
+
     //$note = Note::find(4933088);
     
     /*
@@ -62,7 +68,10 @@ Route::get('logout', 'AuthController@logout');
 Route::group(['prefix' => 'analytic','before' => 'auth'], function ()
 {
 	// Pagina principal del panel de administracion
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@analytic');
+
+    // Pagina de resumenes
+    Route::get('/summaries', 'HomeController@summaries');
 
     // Carga de configuracion de tablero seleccionado
     Route::post('/loadboardconfig', 'BoardController@loadBoardConfig');
@@ -81,4 +90,7 @@ Route::group(['prefix' => 'analytic','before' => 'auth'], function ()
 
     // Se guarda el resumen
     Route::post('/savesummary', 'BoardController@saveSummary');
+
+    // Se guarda el resumen
+    Route::post('/loadsummary', 'BoardController@loadSummary');
 });

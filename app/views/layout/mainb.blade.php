@@ -75,23 +75,8 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="{{ URL::to('analytic/board/STPS') }}" class="btn-board" data-board="3">
-                                <span>STPS</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ URL::to('analytic/board/PEMEX') }}" class="btn-board" data-board="51"><!-- Buscar el de pemex -->
-                                <span>PEMEX</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ URL::to('analytic/board/Presidencia') }}" class="btn-board" data-board="6">
-                                <span>Presidencia</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ URL::to('analytic/summaries') }}">
-                                <span>Resumenes</span>
+                            <a href="{{ URL::to('analytic') }}">
+                                <span>Regresar</span>
                             </a>
                         </li>
                     </ul>
@@ -111,10 +96,6 @@
 
         <script type="text/javascript">
             var base_path       = '{{ URL::to("/") }}';
-            var default_board   = 3;
-            var by_board        = true;
-            var current_tab     = 'query';
-            var tab_id          = 0;
         </script>
 
         <!-- jQuery 2.0.2 -->
@@ -146,7 +127,7 @@
         {{ HTML::script('js/AdminLTE/app.js') }}
         <!-- AdminLTE for demo purposes -->
         {{ HTML::script('js/common.js') }}
-        {{ HTML::script('js/main.js') }}
+        {{ HTML::script('js/summary.js') }}
 
     </body>
 </html>
