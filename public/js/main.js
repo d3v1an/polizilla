@@ -277,8 +277,6 @@ $(function() {
 		var _sources 	= [];
 		var _sm_note 	= '';
 
-		$("#form-resumens").trigger('reset');
-
 		$('.accordion-result input:checked').each(function() {
 			
 			var note_id 	= $(this).data('id');
@@ -318,6 +316,7 @@ $(function() {
 
 			if(data.status==true) {
 				alert(data.message);
+				$("#form-resumens").trigger('reset');
 				$("#dialog-resument").modal('hide');
 			} else {
 				alert(data.message);
