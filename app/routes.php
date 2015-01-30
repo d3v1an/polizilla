@@ -13,25 +13,7 @@
 
 Route::get('/test', function()
 {
-    return Summary::whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') = '".date("Y-m-d")."'")->with('segment')->get();
-    $ok = Summary::with('segment')->get();
-    pre($ok);
-    $queries = DB::getQueryLog();
-    return end($queries);
-
-    //$note = Note::find(4933088);
-    
-    /*
-    $ss = new Summary();
-
-    $ss->title = 'Cartones';
-    $ss->summary = 'A no mames este es el cuerpo del resumen';
-    $ss->sources = 'Periodico el indagador';
-    $ss->save();
-    $ss->notes()->attach(array(4933088));
-    */
-    
-    //return Summary::with('notes')->find(1);
+    return Auth::user()->role;
 });
 
 Route::get('/', function()
@@ -93,4 +75,10 @@ Route::group(['prefix' => 'analytic','before' => 'auth'], function ()
 
     // Se guarda el resumen
     Route::post('/loadsummary', 'BoardController@loadSummary');
+
+    // Se guarda el resumen
+    Route::post('/loadsummaries', 'BoardController@loadSummaries');
+
+    // Actualiza el sumario
+    Route::post('/updatesummary', 'BoardController@updateSummary');
 });

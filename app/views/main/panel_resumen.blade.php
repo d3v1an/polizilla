@@ -1,4 +1,4 @@
-@extends ('layout.mainb')
+@extends ('layout.main_resumen')
 
 @section ('content')
                 <!-- Content Header (Page header) -->

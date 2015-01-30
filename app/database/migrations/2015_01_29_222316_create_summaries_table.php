@@ -19,6 +19,7 @@ class CreateSummariesTable extends Migration {
 			$table->text('title');
 			$table->text('summary');
 			$table->text('sources');
+			$table->integer('board_id',false);
 			$table->integer('summary_segment_id',false);
 			$table->integer('order',false);
 			$table->boolean('enabled')->default(true);

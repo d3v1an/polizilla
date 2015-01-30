@@ -262,4 +262,42 @@ class BoardController extends \BaseController {
 		}
 	}
 
+	// Carga de sumarios
+	public function loadSummaries()
+	{
+
+		try {
+			
+			$summaries = Summary::with('segment')->where('board_id',Input::get('id'))->get();
+
+			if(count($summaries)<1) return Response::json(array('status'=>false,'message'=>'No se encontraron resumenes para cargar'),200);
+
+			return Response::json(array('status'=>true,'message'=>'Se localizaron resumenes','summaries'=>$summaries),200);
+
+		} catch (Exception $e) {
+			return Response::json(array('status'=>false,'message'=>'Ocurrio un problema al cargar los resumenes','exception'=>$e->getMessage()),200);
+		}
+	}
+
+	// Actualizacion de estatus de resuen
+	public function updateSummary()
+	{
+
+		try {
+			
+			$summary = Summary::find(Input::get('id'));
+
+			if(!$summary) return Response::json(array('status'=>false,'message'=>'No se encontro el resumen seleccionado'),200);
+
+			$summary->enabled = Input::get('status');
+
+			if(!$summary->save()) return Response::json(array('status'=>false,'message'=>'El resumen no pudo ser actualizado'),200);
+
+			return Response::json(array('status'=>true,'message'=>'Resumen actualizado'),200);
+
+		} catch (Exception $e) {
+			return Response::json(array('status'=>false,'message'=>'El resumen no pudo ser actualizado'),200);			
+		}
+	}
+
 }
