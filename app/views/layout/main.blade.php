@@ -112,6 +112,7 @@
         <script type="text/javascript">
             var base_path       = '{{ URL::to("/") }}';
             var default_board   = 3;
+            var only_board_id   = 3;
             var by_board        = true;
             var current_tab     = 'query';
             var tab_id          = 0;

@@ -8,6 +8,7 @@ $(function() {
 		var board_id 	= $(this).data('board');
 
 		default_board 	= board_id;
+		only_board_id 	= board_id;
 		current_tab 	= 'query'; 
 
 		$('#tab_df').html('D.F.');
@@ -287,7 +288,6 @@ $(function() {
             _ids.push(note_id);
             
             if($.inArray(note_source,_sources) == -1) {
-            	console.log(note_source+' Agregado');
             	_sources.push(note_source);
             }
 
@@ -314,7 +314,7 @@ $(function() {
 			return false;
 		}
 
-		$.d3POST(base_path+'/analytic/savesummary',{ids:_ids,title:_title,summary:_resume,source:_source,segment:_segment},function(data){
+		$.d3POST(base_path+'/analytic/savesummary',{board_id:only_board_id,ids:_ids,title:_title,summary:_resume,source:_source,segment:_segment},function(data){
 
 			if(data.status==true) {
 				alert(data.message);

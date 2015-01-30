@@ -233,6 +233,7 @@ class BoardController extends \BaseController {
 			$summary->title 				= Input::get('title');
 			$summary->summary 				= Input::get('summary');
 			$summary->sources 				= Input::get('source');
+			$summary->board_id 				= Input::get('board_id');
 			$summary->summary_segment_id	= Input::get('segment');
 
 			if(!$summary->save()) return Response::json(array('status'=>false,'message'=>'No pude ser guardado el resumen'),200);
