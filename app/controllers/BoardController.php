@@ -254,12 +254,12 @@ class BoardController extends \BaseController {
 			
 			$summaries = Summary::with('segment')->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') = '".date("Y-m-d")."'")->get();
 
-			if(count($summaries)<1) return Response::json(array('status'=>true,'message'=>'No se enontraron resumenes recientes'),200);
+			if(count($summaries)<1) return Response::json(array('status'=>false,'message'=>'No se enontraron resumenes recientes'),200);
 
 			return Response::json(array('status'=>true,'message'=>'Resumenes encontrados','summaries'=>$summaries),200);
 
 		} catch (Exception $e) {
-			return Response::json(array('status'=>true,'message'=>'Ocurrio un problema al buscar los resumenes','exception'=>$e->getMessage()),200);
+			return Response::json(array('status'=>false,'message'=>'Ocurrio un problema al buscar los resumenes','exception'=>$e->getMessage()),200);
 		}
 	}
 
