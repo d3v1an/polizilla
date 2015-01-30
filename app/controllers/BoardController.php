@@ -212,7 +212,7 @@ class BoardController extends \BaseController {
 	{
 		try {
 			
-			$segments = SummarySegment::where('board_id',Input::get('id'))->get();
+			$segments = Segment::where('board_id',Input::get('id'))->get();
 
 			if(!$segments) return Response::json(array('status'=>false,'message'=>'No hay segmentos disponibles para este tablero'),200);
 
