@@ -270,7 +270,7 @@ class BoardController extends \BaseController {
 		try {
 			
 			$summaries = Summary::with('segment')->where('board_id',Input::get('id'))
-									->orderBy('created_at','desc');
+									->orderBy('created_at','desc')
 									->get();
 
 			if(count($summaries)<1) return Response::json(array('status'=>false,'message'=>'No se encontraron resumenes para cargar'),200);
