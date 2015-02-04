@@ -44,7 +44,7 @@ $(function() {
                                                 '<span class="header-board">'+summary.title+'</span>'+
                                                 '<p>' +
                                                 	'<span>Estatus : <span class="label label-'+(summary.enabled==1?'success':'danger')+'" id="status_'+summary.id+'">'+(summary.enabled==1?'Libre':'Tomada')+'</span></span> | '+
-                                                	'<span>Segmento : <span class="label label-primary">'+summary.segment.name+'</span></span> | '+
+                                                	'<span>Segmento : <span class="label label-primary">'+ (summary.summary_segment_id==0 ? 'General' : summary.segment.name)+'</span></span> | '+
                                                 	'<span>Fecha : '+summary.created_at+'</span>'+
                                                 '</p>' +
                                             '</a>'+

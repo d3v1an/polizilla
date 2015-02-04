@@ -271,7 +271,7 @@ class BoardController extends \BaseController {
 			
 			$summaries = Summary::with('segment')->where('board_id',Input::get('id'))
 									->orderBy('created_at','desc')
-									//->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') = CURDATE()")
+									->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') = CURDATE()")
 									->get();
 
 			if(count($summaries)<1) return Response::json(array('status'=>false,'message'=>'No se encontraron resumenes para cargar'),200);

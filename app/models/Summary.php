@@ -11,6 +11,6 @@ class Summary extends \Eloquent {
 
     public function segment()
     {
-    	return $this->belongsTo('Segment','id');
+    	return $this->belongsTo('Segment','summary_segment_id');
     }
 }

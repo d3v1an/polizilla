@@ -13,7 +13,10 @@
 
 Route::get('/test', function()
 {
-    return Auth::user()->role;
+    return Summary::with('segment')->where('board_id',Input::get('id'))
+                                    ->orderBy('created_at','desc')
+                                    ->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') = CURDATE()")
+                                    ->get();
 });
 
 Route::get('/', function()
