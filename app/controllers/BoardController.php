@@ -252,7 +252,7 @@ class BoardController extends \BaseController {
 	{
 		try {
 			
-			$summaries = Summary::with('segment')->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') = '".date("Y-m-d")."'")->get();
+			$summaries = Summary::with('segment')->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') = CURDATE()")->orderBy('created_at','desc')->get();
 
 			if(count($summaries)<1) return Response::json(array('status'=>false,'message'=>'No se enontraron resumenes recientes'),200);
 
