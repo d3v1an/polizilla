@@ -85,6 +85,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ URL::to('analytic/board/Jalisco') }}" class="btn-board" data-board="1">
+                                <span>Jalisco</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ URL::to('analytic/board/Presidencia') }}" class="btn-board" data-board="6">
                                 <span>Presidencia</span>
                             </a>
